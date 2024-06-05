@@ -23,8 +23,8 @@ public class Main {
             }
             br.close();
 
-        Arrays.sort(time, new Comparator<int[]>() {
-            @Override
+        Arrays.sort(time, new Comparator<int[]>() {            // 배열을 정렬하는 sort 메서드 사용. 두번째 인자로 정렬 기준의 내용을 가지는 Comparator 객체 선언
+            @Override    // 인터페이스를 상속받은 경우 반드시 오버라이딩하여 사용해야 한다. -> 정렬 기준을 아래와 같이 재정의
             public int compare(int[] o1, int[] o2) {        // 회의 두 개를 비교한다.
                 if (o1[1] == o2[1]) {               // 종료 시간이 서로 같으면 시작 시간을 기준으로 오름차순 정렬
                     return o1[0] - o2[0];
