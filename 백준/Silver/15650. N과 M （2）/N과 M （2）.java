@@ -13,7 +13,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        ary = new int[n];
+        ary = new int[m];
 
         dfs(1, 0); // 1부터 탐색 시작, 깊이는 0(초기깊이)
         System.out.print(sb.toString());
