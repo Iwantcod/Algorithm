@@ -52,17 +52,9 @@ class Solution {
         int middleLevel = (startLevelRange + endLevelRange)/2;
         long curTime = cal(middleLevel);
         
-        // for(int j = 0; j < diffs.length; j++) {
-        //     if(diffs[j] > middleLevel) {
-        //         curTime += plusTime[j]*(diffs[j] - middleLevel);
-        //     }
-        // }
-        
         if(curTime > limit) {
-            // System.out.println("curTime: "+curTime+", middleLevel: "+middleLevel+", range: "+startLevelRange+" ~ "+endLevelRange);
             binary(middleLevel, endLevelRange);
         } else if(curTime < limit) {
-            // System.out.println("curTime: "+curTime+", middleLevel: "+middleLevel+", range: "+startLevelRange+" ~ "+endLevelRange);
             minLevel = middleLevel;
             binary(startLevelRange, middleLevel);
         } else {
