@@ -1,42 +1,40 @@
+import java.util.*;
+import java.lang.*;
 import java.io.*;
-import java.util.StringTokenizer;
 
-public class Main {
-
-    static int cnt = 0; // 해당 좌표까지 가는 데 이동한 칸의 개수
+class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] sp = br.readLine().split(" ");
+        int n = Integer.parseInt(sp[0]);
+        int y = Integer.parseInt(sp[1]) + 1;
+        int x = Integer.parseInt(sp[2]) + 1;
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int r = Integer.parseInt(st.nextToken());
-        int c = Integer.parseInt(st.nextToken());
-        int size = (int) Math.pow(2, n); // 직사각형 한 변의 길이
-
-        find(size, r, c);
-        bw.write(String.valueOf(cnt));
-        bw.close();
+        System.out.println(s(n, y, x));
+        
     }
-
-    public static void find(int size, int r, int c) {
-
-        if(size == 1) {
-            // 직사각형을 계속 쪼개는데, 이 직사각형의 한 변의 길이가 1이 되면 재귀 탈출
-            return;
+    public static int s(int n, int y, int x) {
+        if(n == 0) {
+            return 0;
         }
 
-        if(r < size/2 && c < size/2) { // 좌표가 1 사분면인 경우 -> 상대좌표 동일: 그대로 전달
-            find(size/2, r, c);
-        } else if (r < size/2 && c >= size/2) { // 좌표가 2 사분면인 경우 -> '열' 상대좌표 조정 후 전달
-            cnt += ((size*size)/4);
-            find(size/2, r, c-(size/2));
-        } else if (r >= size/2 && c < size/2) { // 좌표가 3 사분면인 경우 -> '행' 상대좌표 조정 후 전달
-            cnt += ((size*size)/4)*2;
-            find(size/2, r-(size/2), c);
-        } else if (r >= size/2 && c >= size/2) { // 좌표가 4 사분면인 경우 -> '행', '열' 상대좌표 조정 후 전달
-            cnt += ((size*size)/4)*3;
-            find(size/2, r-(size/2), c-(size/2));
+        int len = (int)Math.pow(2, n);
+        int size = len * len;
+        // System.out.println("len: "+len+", "+y+" "+x);
+
+        if(y <= len/2 && x <= len/2) {
+            // System.out.println("1 사분면 진입");
+            return s(n-1, y, x);
+        } else if(y <= len/2 && x > len/2) {
+            // System.out.println("2 사분면 진입, +"+(size * 1/4));
+            return size/4 + s(n-1, y, x - len/2);
+        } else if(y > len/2 && x <= len/2) {
+            // System.out.println("3 사분면 진입, +"+(size * 2/4));
+            return size/4*2 + s(n-1, y - len/2, x);
+        } else {
+            // System.out.println("4 사분면 진입, +"+(size * 3/4));
+            return size/4*3 + s(n-1, y - len/2, x - len/2);
         }
     }
 }
