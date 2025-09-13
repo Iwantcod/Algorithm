@@ -1,0 +1,2 @@
+-- 코드를 입력하세요
+SELECT year(o.sales_date) as YEAR, month(o.sales_date) as MONTH, GENDER, count(distinct o.USER_ID) as USERS from online_sale o join user_info u on o.user_id = u.user_id where u.gender is not null group by year(sales_date), month(sales_date), u.gender order by year(sales_date), month(sales_date), gender;
