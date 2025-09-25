@@ -1,0 +1,1 @@
+select d.dept_id DEPT_ID, d.dept_name_en DEPT_NAME_EN, round(avg(e.sal)) AVG_SAL from hr_employees e join hr_department d on e.dept_id = d.dept_id group by e.dept_id order by AVG_SAL desc;
