@@ -1,0 +1,1 @@
+select ao.animal_id ANIMAL_ID, ao.name NAME from animal_outs ao where not exists(select 1 from animal_ins ai where ai.animal_id = ao.animal_id) order by ao.animal_id;
