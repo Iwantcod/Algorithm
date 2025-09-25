@@ -1,0 +1,1 @@
+select e1.ID, (select count(*) from ecoli_data e2 where e2.parent_id = e1.id) CHILD_COUNT from ecoli_data e1;
