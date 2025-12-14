@@ -30,7 +30,7 @@ class Solution {
         }
     }
     public int cal(int[] queue, long target, long sum) {
-        int limit = queue.length * 3;
+        int limit = queue.length * 2;
         int count = 0;
         int len = queue.length;
         int p = 0;
