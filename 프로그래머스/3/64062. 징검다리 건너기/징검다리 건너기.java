@@ -1,35 +1,35 @@
-// 23:42
+// 21:09
 class Solution {
     public int solution(int[] stones, int k) {
-        int l = 0;
-        int r = 200_000_001;
+        int p = 0;
+        int q = 400_000_001;
         int answer = 0;
         
-        while(l <= r) {
-            int mid = (l + r) / 2;
-            int cnt = 0;
-            boolean possible = true;
-            for(int i = 0; i < stones.length; i++) {
-                int cur = stones[i] - mid;
-                if(cur < 0) {
-                    cnt++;
-                } else {
-                    cnt = 0;
-                }
-                if(cnt == k) {
-                    possible = false;
-                    break;
-                }
-            }
-            // System.out.println("l: "+l+" r: "+r);
-            // System.out.println(mid+" "+possible);
-            if(possible) {
+        while(p < q) {
+            int mid = (p+q)/2;
+            // System.out.println(mid);
+            if(possible(mid, k, stones)) {
                 answer = mid;
-                l = mid + 1;
+                p = mid + 1;
             } else {
-                r = mid - 1;
+                q = mid;
             }
         }
+
         return answer;
+    }
+    public boolean possible(int n, int k, int[] stones) {
+        int cnt = 0;
+        for(int i = 0; i < stones.length; i++) {
+            if(stones[i] - n < 0) {
+                cnt++;
+            } else {
+                cnt = 0;
+            }
+            if(cnt == k) {
+                return false;
+            }
+        }
+        return true;
     }
 }
