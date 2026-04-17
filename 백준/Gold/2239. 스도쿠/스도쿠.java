@@ -58,44 +58,30 @@ class Main {
         // 1. 현재 3*3 공간에 1~9는 하나씩만 존재하는지 검사
         int blockY = y/3*3;
         int blockX = x/3*3;
-        // System.out.println(blockY+" ~ "+(blockY+3));
-        // System.out.println(blockX+" ~ "+(blockX+3));
-        boolean[] check = new boolean[10]; // 1 ~ 9
-        check[num] = true;
         for(int i = blockY; i < blockY + 3; i++) {
             for(int j = blockX; j < blockX + 3; j++) {
                 int cur = map[i][j];
-                if(cur != 0 && check[cur] == true) {
+                if(cur == num) {
                     return false;
-                } else {
-                    check[cur] = true;
                 }
             }
         }
         return true;
     }
     public static boolean checkRow(int y, int x, int num) {
-        boolean[] check = new boolean[10]; // 1 ~ 9
-        check[num] = true;
         for(int i = 0; i < 9; i++) {
             int cur = map[y][i];
-            if(cur != 0 && check[cur] == true) {
+            if(cur == num) {
                 return false;
-            } else {
-                check[cur] = true;
             }
         }
         return true;
     }
     public static boolean checkCol(int y, int x, int num) {
-        boolean[] check = new boolean[10]; // 1 ~ 9
-        check[num] = true;
         for(int i = 0; i < 9; i++) {
             int cur = map[i][x];
-            if(cur != 0 && check[cur] == true) {
+            if(cur == num) {
                 return false;
-            } else {
-                check[cur] = true;
             }
         }
         return true;
